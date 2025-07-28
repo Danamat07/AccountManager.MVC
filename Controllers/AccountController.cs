@@ -8,5 +8,10 @@ namespace AccountManager.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
