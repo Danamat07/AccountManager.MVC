@@ -1,0 +1,39 @@
+﻿## Build & packaging
+bin/
+obj/
+*.dll
+*.exe
+*.app
+*.log
+
+## VS / IDE stuff
+.vs/
+.vscode/
+*.user
+*.suo
+
+## ASP.NET-specific
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## DotNet stuff
+*.db
+*.db-shm
+*.db-wal
+
+## NPM / Yarn if used
+node_modules/
+dist/
+wwwroot/lib/
+
+## Logs
+*.log
+Logs/
+
+## Test output
+TestResults/
+coverage/
+
+## Rider
+.idea/
