@@ -23,6 +23,25 @@ namespace AccountManager.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email or password is incorrect.");
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -39,9 +58,7 @@ namespace AccountManager.Controllers
                     Email = model.Email,
                     UserName = model.Email,
                 };
-
                 var result = await userManager.CreateAsync(users, model.Password);
-
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Login", "Account");
