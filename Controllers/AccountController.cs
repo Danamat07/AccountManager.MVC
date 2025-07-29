@@ -109,6 +109,7 @@ namespace AccountManager.Controllers
             return View(new ChangePasswordViewModel { Email = username });
         }
 
+        [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -142,6 +143,12 @@ namespace AccountManager.Controllers
                 ModelState.AddModelError("", "Something went wrong, try again.");
                 return View(model);
             }
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

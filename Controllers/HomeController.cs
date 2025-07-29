@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using AccountManager.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AccountManager.Controllers
@@ -18,6 +19,7 @@ namespace AccountManager.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
