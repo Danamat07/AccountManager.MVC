@@ -80,6 +80,25 @@ namespace AccountManager.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(model.Email);
+                if(user == null)
+                {
+                    ModelState.AddModelError("", "Email not found.");
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("ChangePassword", "Account", new { userName = user.UserName });
+                }
+            }
+            return View(model);
+        }
+
         public IActionResult ChangePassword()
         {
             return View();
